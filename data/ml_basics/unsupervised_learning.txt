@@ -1,0 +1,29 @@
+##UNSUPERVISED LEARNING
+
+Unsupervised learning is a type of machine learning where the model is trained on unlabeled data.
+The data does not come with explicit target values. Instead, the goal is to discover hidden patterns,
+structure, or relationships in the data.
+
+Common unsupervised learning tasks include:
+- Clustering
+- Dimensionality Reduction
+- Density Estimation
+- Anomaly or Outlier Detection
+
+Examples of unsupervised algorithms:
+- k-Means Clustering
+- Hierarchical Clustering
+- DBSCAN
+- Principal Component Analysis (PCA)
+- t-SNE and UMAP for visualization
+
+Key characteristics of unsupervised learning:
+- There is no explicit right or wrong label, making evaluation more challenging.
+- It is useful for exploratory data analysis and finding natural groupings in data.
+- It can help pre-process data for downstream tasks, e.g., using PCA to reduce dimensionality
+  before applying a supervised algorithm.
+
+Example use cases:
+- Customer segmentation in marketing
+- Grouping news articles by topic
+- Detecting unusual system behavior for security monitoring
