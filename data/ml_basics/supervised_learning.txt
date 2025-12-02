@@ -1,0 +1,24 @@
+##SUPERVISED LEARNING
+
+Supervised learning is a type of machine learning where the model is trained on labeled data.
+Each training example comes with an input vector and a corresponding target output.
+The goal is to learn a mapping from inputs to outputs that generalizes well to unseen data.
+
+Common supervised learning tasks include classification and regression.
+
+Examples of supervised algorithms:
+- Linear Regression
+- Logistic Regression
+- k-Nearest Neighbors
+- Decision Trees and Random Forests
+- Support Vector Machines
+- Gradient Boosting Methods
+
+Key aspects of supervised learning:
+- There is a clear notion of "right" and "wrong" via labels.
+- The model can be evaluated using metrics such as accuracy, precision, recall, F1-score for classification,
+  and mean squared error or mean absolute error for regression.
+- It assumes that training and test data are drawn from the same distribution.
+
+Supervised learning is widely used in applications such as spam detection, credit scoring, image classification,
+and demand forecasting.
