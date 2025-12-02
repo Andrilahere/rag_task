@@ -1,0 +1,33 @@
+##OVERFITTING, UNDERFITTING, AND REGULARIZATION
+
+Overfitting occurs when a machine learning model learns patterns that are specific to the training data
+but do not generalize well to new, unseen data. An overfitted model effectively "memorizes" noise
+or random fluctuations in the training set.
+
+Typical signs of overfitting:
+- Very low training error
+- Significantly higher validation or test error
+
+Underfitting is the opposite problem.
+An underfitted model is too simple to capture the underlying structure of the data.
+It performs poorly on both the training and the test sets.
+
+Common causes of underfitting:
+- Model is too simple (e.g., linear model for highly non-linear data)
+- Insufficient training time or too strong regularization
+
+Regularization refers to a set of techniques that constrain model complexity to reduce overfitting
+and improve generalization.
+
+Common regularization techniques:
+- L2 regularization (Ridge): adds a penalty proportional to the sum of squared weights.
+- L1 regularization (Lasso): adds a penalty proportional to the sum of absolute values of weights.
+- Elastic Net: combination of L1 and L2 penalties.
+- Early stopping: stop training when validation performance stops improving.
+- Dropout (for neural networks): randomly drop units during training to prevent co-adaptation.
+- Limiting model capacity: limiting tree depth, number of parameters, or number of features.
+
+The bias-variance trade-off:
+- High bias, low variance models tend to underfit.
+- Low bias, high variance models tend to overfit.
+- Regularization and appropriate model selection help achieve a good balance between bias and variance.
