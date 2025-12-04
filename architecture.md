@@ -153,8 +153,7 @@ Mitigations Planned (Bonus Section)
 
 ## 8. Evaluation Plan
 
-Qualitative Evaluation
-Run a set of representative queries covering:
+Qualitative Evaluation by running a set of representative queries covering:
 
 •	Definitions
 •	Differences between ML concepts
