@@ -20,17 +20,20 @@ Document Format
 The dataset consists of multiple .txt files containing machine learning basics (supervised learning, unsupervised learning, overfitting, regularization, etc.).
 
 Text Cleaning Applied
+
 •	Normalize newline format (\r\n → \n)
 •	Remove extra blank lines
 •	Collapse multiple spaces/tabs
 •	Strip leading/trailing whitespace
 
 Chunking Strategy
+
 Type: Word-level chunking with overlap
 •	Chunk size: 300 words
 •	Overlap: 60 words
 
 Why This Works
+
 •	Avoids losing context across chunk boundaries
 •	Works well with small datasets
 •	Reduces LLM hallucination risk because related concepts remain grouped
@@ -42,6 +45,7 @@ Model Used:
 OpenAI text-embedding-3-small
 
 Justification:
+
 •	High quality embeddings suitable for semantic search
 •	Low cost compared to larger models
 •	768-dimension vectors give good performance for RAG tasks
@@ -49,6 +53,7 @@ Justification:
 •	Ideal for small-to-medium RAG projects
 
 The chosen model strikes the best balance of:
+
 •	Cost
 •	Speed
 •	Accuracy
@@ -58,6 +63,7 @@ The chosen model strikes the best balance of:
 Vector Store Used:
 FAISS
 Reasons for Choosing FAISS
+
 •	Very fast local similarity search
 •	Lightweight and easy to integrate
 •	Works offline
@@ -65,12 +71,14 @@ Reasons for Choosing FAISS
 •	Supports multiple index types (L2, cosine, IVF, HNSW)
 
 Structure
+
 •	faiss_index.bin - stores the vector index
 •	metadata.json - stores metadata for each chunk: source, chunk_id, start_word, end_word, text
 
 ## 5. Retrieval Strategy
 
 Steps:
+
 1.	Embedding the user query using the same embedding model.
 2.	Using FAISS to obtain the top-k most similar chunks (default k=5).
 3.	De-duplicate overlapping chunks by (source, chunk_id).
@@ -82,6 +90,7 @@ Steps:
 •	similarity score
 
 Why This Strategy Works
+
 •	Ensures only highly relevant chunks are passed to the LLM
 •	Prevents hallucination from weak matches
 •	Keeps prompt size manageable
@@ -89,6 +98,7 @@ Why This Strategy Works
 ## 6. Prompt Structure
 
 System Prompt:
+
 Guides the LLM to answer only from the documentation:
 You are an AI assistant specialized in Machine Learning Basics. You must answer only using the provided context chunks from the documentation.
 If the answer is not clearly contained in the context, say:
@@ -106,11 +116,13 @@ USER QUESTION:
 {query}
 
 Instructions:
+
 •	Use only the information from the CONTEXT.
 •	If the context is insufficient, say: "I do not know based on the provided documentation."
 •	If multiple sources conflict, say that there are conflicting descriptions.
 
 Why This Prompting Works
+
 •	Strong grounding instructions
 •	Forces fallback instead of hallucinating
 •	Encourages citing specific source chunks
@@ -118,12 +130,14 @@ Why This Prompting Works
 ## 7. Failure Modes & Hallucination Prevention
 
 Failure Modes
+
 1.	Low-similarity retrieval - irrelevant results returned
 2.	Contradictory content - LLM confusion
 3.	Very broad queries - too many chunks retrieved
 4.	Chunk fragmentation - missing relationships
-5.	
+   
 Mitigations Implemented
+
 •	Similarity threshold (0.75)
 •	Overlapping chunks
 •	Strict system prompt
@@ -131,6 +145,7 @@ Mitigations Implemented
 •	Source highlighting at the end of the answer
 
 Mitigations Planned (Bonus Section)
+
 •	Metadata filtering
 •	Multi-query retrieval
 •	Context compression
@@ -140,17 +155,20 @@ Mitigations Planned (Bonus Section)
 
 Qualitative Evaluation
 Run a set of representative queries covering:
+
 •	Definitions
 •	Differences between ML concepts
 •	Advantages/disadvantages
 •	Examples
 
 Measure:
+
 •	Correctness
 •	Grounding
 •	Consistency across queries
 
 Stress Testing
+
 •	Ambiguous queries
 •	Multi-hop reasoning
 •	Out-of-domain questions
